@@ -8,6 +8,7 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const [ messageText, setMessageText ] = React.useState('');
+  const [ toastType, setToastType ] = React.useState('');
 
   return (
     <div className={styles.wrapper}>
@@ -39,20 +40,19 @@ function ToastPlayground() {
               const id = `variant-${option}`;
 
               return (
-                <label htmlFor={id}>
+                <label htmlFor={id} key={id}>
                   <input
                     id={id}
-                    key={id}
                     type="radio"
                     name="variant"
                     value={option}
+                    checked={option === toastType}
+                    onChange={event => setToastType(event.target.value)}
                   />
                   {option}
                 </label>
               )
             })}
-
-            {/* TODO Other Variant radio buttons here */}
           </div>
         </div>
 
