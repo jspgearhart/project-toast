@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '../Button';
-import Toast from '../Toast';
+import ToastShelf from '../ToastShelf';
 
 import styles from './ToastPlayground.module.css';
 
@@ -9,7 +9,8 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const [ message, setMessage ] = React.useState('');
-  const [ toastType, setToastType ] = React.useState('');
+  const [ variant, setVariant ] = React.useState('');
+  const [ toastArray, setToastArray ] = React.useState([]);
   const [ isToastVisible, setIsToastVisible] = React.useState(false);
 
   function handlePopToast() {setIsToastVisible(true)}
@@ -21,7 +22,8 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      {isToastVisible && <Toast type={toastType} message={message} setIsToastVisible={setIsToastVisible} />}
+      <ToastShelf />
+      {/* {isToastVisible && <Toast type={variant} message={message} setIsToastVisible={setIsToastVisible} />} */}
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
@@ -52,8 +54,8 @@ function ToastPlayground() {
                     type="radio"
                     name="variant"
                     value={option}
-                    checked={option === toastType}
-                    onChange={event => setToastType(event.target.value)}
+                    checked={option === variant}
+                    onChange={event => setVariant(event.target.value)}
                   />
                   {option}
                 </label>
