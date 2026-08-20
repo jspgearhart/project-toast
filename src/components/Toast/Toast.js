@@ -12,7 +12,7 @@ import VisuallyHidden from '../VisuallyHidden';
 import styles from './Toast.module.css';
 
 const ICONS_BY_VARIANT = {
-  notice: <Info size={24}/>,
+  notice: <Info size={24} />,
   warning: <AlertTriangle size={24} />,
   success: <CheckCircle size={24} />,
   error: <AlertOctagon size={24} />,
@@ -20,7 +20,7 @@ const ICONS_BY_VARIANT = {
 
 function Toast({ variant, setIsToastVisible, children }) {
 
-  function handleDismiss() {setIsToastVisible(false)};
+  function handleDismiss() { setIsToastVisible(false) };
 
   return (
     <div className={`${styles.toast} ${variant && styles[variant]}`}>
@@ -30,10 +30,15 @@ function Toast({ variant, setIsToastVisible, children }) {
       <p className={styles.content}>
         {children}
       </p>
-      <button className={styles.closeButton}>
-        <X size={24} onClick={handleDismiss} />
-        <VisuallyHidden>Dismiss message</VisuallyHidden>
-      </button>
+      <form onSubmit={event => {
+        event.preventDefault();
+        handleDismiss();
+        }}>
+        <button className={styles.closeButton}>
+          <X size={24} onClick={handleDismiss} />
+          <VisuallyHidden>Dismiss message</VisuallyHidden>
+        </button>
+      </form>
     </div>
   );
 }
