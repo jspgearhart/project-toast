@@ -32,6 +32,8 @@ function ToastPlayground() {
         onSubmit={event => {
           event.preventDefault();
           handleCreateToast();
+          setMessage('');
+          setVariant('notice');
         }}
       >
         <div className={styles.controlsWrapper}>
