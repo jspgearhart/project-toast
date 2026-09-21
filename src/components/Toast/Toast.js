@@ -8,6 +8,7 @@ import {
 } from 'react-feather';
 
 import VisuallyHidden from '../VisuallyHidden';
+import { ToastArrayContext } from '../App';
 
 import styles from './Toast.module.css';
 
@@ -18,9 +19,9 @@ const ICONS_BY_VARIANT = {
   error: <AlertOctagon size={24} />,
 };
 
-function Toast({ variant, setIsToastVisible, children }) {
+function Toast({ variant, handleDismiss, children }) {
 
-  function handleDismiss() { setIsToastVisible(false) };
+  const { toastArray, setToastArray } = React.use(ToastArrayContext);
 
   return (
     <div className={`${styles.toast} ${variant && styles[variant]}`}>
@@ -35,7 +36,7 @@ function Toast({ variant, setIsToastVisible, children }) {
         handleDismiss();
         }}>
         <button className={styles.closeButton}>
-          <X size={24} onClick={handleDismiss} />
+          <X size={24} />
           <VisuallyHidden>Dismiss message</VisuallyHidden>
         </button>
       </form>
