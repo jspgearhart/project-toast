@@ -2,18 +2,19 @@ import React from 'react';
 
 import Button from '../Button';
 import ToastShelf from '../ToastShelf';
+import { ToastArrayContext } from '../App';
 
 import styles from './ToastPlayground.module.css';
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
-  const [ message, setMessage ] = React.useState('');
-  const [ variant, setVariant ] = React.useState('');
-  const [ toastArray, setToastArray ] = React.useState([]);
+  const [message, setMessage] = React.useState('');
+  const [variant, setVariant] = React.useState('');
+  const { toastArray, setToastArray } = React.use(ToastArrayContext);
 
   function handleCreateToast() {
-    const newToast = {variant: variant, message: message, id: crypto.randomUUID()}
+    const newToast = { variant: variant, message: message, id: crypto.randomUUID() }
     const nextToastArray = [...toastArray, newToast];
     setToastArray(nextToastArray);
   };

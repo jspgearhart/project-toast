@@ -2,22 +2,21 @@ import React from 'react';
 
 import Toast from '../Toast';
 import styles from './ToastShelf.module.css';
+import { ToastArrayContext } from '../App';
 
-function ToastShelf({ toastArray }) {
+function ToastShelf() {
 
-  // JP: Need to make context that includes the toastArray so it can be used and updated from everywhere - 8.20.26 @ 3:10pm
+  const { toastArray, setToastArray } = React.use(ToastArrayContext);
 
   return (
-    <ol className={styles.wrapper} key="toast-shelf">
-      {toastArray.map(item => {
-        return (
-          <li>
-            <Toast variant={item.variant} key={item.id}>
+    <ol className={styles.wrapper}>
+      {toastArray?.map(item =>
+          <li key={item.id}>
+            <Toast variant={item.variant}>
               {item.message}
             </Toast>
           </li>
-        )
-      })}
+        )}
     </ol>
   );
 }
