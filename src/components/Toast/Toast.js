@@ -8,7 +8,6 @@ import {
 } from 'react-feather';
 
 import VisuallyHidden from '../VisuallyHidden';
-import { ToastArrayContext } from '../App';
 
 import styles from './Toast.module.css';
 
@@ -20,8 +19,6 @@ const ICONS_BY_VARIANT = {
 };
 
 function Toast({ variant, handleDismiss, children }) {
-
-  const { toastArray, setToastArray } = React.use(ToastArrayContext);
 
   return (
     <div className={`${styles.toast} ${variant && styles[variant]}`}>
